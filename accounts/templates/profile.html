@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Профиль{% endblock %}
+{% block nav %}
+    {% if user_obj == user %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'accounts:change_profile' user_obj.pk %}">Редактировать</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'accounts:change_password' %}">Сменить пароль</a>
+        </li>
+    {% endif %}
+{% endblock %}
+{% block content %}
+    <div class="card flex-row mt-3">
+        {% if user_obj.profile.avatar %}
+            <img src="{{ user_obj.profile.avatar.url }}" class="card-img-top w-25" alt="...">
+        {% endif %}
+        <div class="card-body ms-5">
+            <h5 class="card-title">Имя пользователя: {{ user_obj.username }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Год рождения: {{ user_obj.profile.birthday }}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">Имя: {{ user_obj.first_name }}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">Фамилия: {{ user_obj.last_name }}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">Почта: {{ user_obj.email }}</h6>
+        </div>
+    </div>
+    {% for order in user_obj.orders.all %}
+        -------------------------------
+        {% for order_product in order.order_products.all %}
+            {{ order_product.product.name }} {{ order_product.qty }} {{ order_product.product.price }} {{ order_product.get_sum }}
+            <br>
+
+        {% endfor %}
+        total : {{ order.get_total }}
+    {% endfor %}
+{% endblock %}

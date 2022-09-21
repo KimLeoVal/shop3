@@ -1,0 +1,203 @@
+[
+{
+    "model": "webapp.product",
+    "pk": 1,
+    "fields": {
+        "name": "Отвертка",
+        "description": "лучшая на свете",
+        "category": "tools",
+        "amount": 23,
+        "price": "250.00"
+    }
+},
+{
+    "model": "webapp.product",
+    "pk": 2,
+    "fields": {
+        "name": "Гамбургер",
+        "description": "сочный восточный",
+        "category": "food",
+        "amount": 50,
+        "price": "130.00"
+    }
+},
+{
+    "model": "webapp.product",
+    "pk": 3,
+    "fields": {
+        "name": "Мишка плюшевый",
+        "description": "Размер XXXXL, будет носить вас на руках",
+        "category": "toys",
+        "amount": 7,
+        "price": "2500.00"
+    }
+},
+{
+    "model": "webapp.product",
+    "pk": 4,
+    "fields": {
+        "name": "Телевизор",
+        "description": "Супер четкий супер тонкий",
+        "category": "tech",
+        "amount": 49999,
+        "price": "16.00"
+    }
+},
+{
+    "model": "webapp.product",
+    "pk": 5,
+    "fields": {
+        "name": "Хотдог",
+        "description": "лучшие сосиски у нас в клубе",
+        "category": "food",
+        "amount": 83,
+        "price": "145.00"
+    }
+},
+{
+    "model": "webapp.product",
+    "pk": 6,
+    "fields": {
+        "name": "Перфоратор",
+        "description": "выдолбит все что захотите",
+        "category": "tools",
+        "amount": 96,
+        "price": "6999.00"
+    }
+},
+{
+    "model": "webapp.product",
+    "pk": 7,
+    "fields": {
+        "name": "Кукла Барби",
+        "description": "лучшее для ваших детей",
+        "category": "toys",
+        "amount": 63,
+        "price": "1867.00"
+    }
+},
+{
+    "model": "webapp.product",
+    "pk": 8,
+    "fields": {
+        "name": "Бензопила",
+        "description": "В лучших традициях хоррор фильмов",
+        "category": "tools",
+        "amount": 74,
+        "price": "5069.00"
+    }
+},
+{
+    "model": "webapp.product",
+    "pk": 9,
+    "fields": {
+        "name": "Стейки",
+        "description": "Нежное мясцо, а из кого не скажем",
+        "category": "food",
+        "amount": 656,
+        "price": "690.00"
+    }
+},
+{
+    "model": "webapp.product",
+    "pk": 10,
+    "fields": {
+        "name": "Тест",
+        "description": "тестестест",
+        "category": "other",
+        "amount": 0,
+        "price": "125.00"
+    }
+},
+{
+    "model": "webapp.product",
+    "pk": 11,
+    "fields": {
+        "name": "Roma",
+        "description": "111111",
+        "category": "other",
+        "amount": 1,
+        "price": "150.00"
+    }
+},
+{
+    "model": "webapp.cart",
+    "pk": 7,
+    "fields": {
+        "product": 1,
+        "qty": 7
+    }
+},
+{
+    "model": "webapp.cart",
+    "pk": 8,
+    "fields": {
+        "product": 2,
+        "qty": 2
+    }
+},
+{
+    "model": "webapp.cart",
+    "pk": 9,
+    "fields": {
+        "product": 6,
+        "qty": 3
+    }
+},
+{
+    "model": "webapp.order",
+    "pk": 1,
+    "fields": {
+        "name": "fdvfd",
+        "phone": "vdf",
+        "address": "vdfvdf",
+        "created_at": "2022-08-03T14:31:16.021Z"
+    }
+},
+{
+    "model": "webapp.order",
+    "pk": 2,
+    "fields": {
+        "name": "dsdf",
+        "phone": "csdcds",
+        "address": "cdscsd",
+        "created_at": "2022-08-03T14:39:01.973Z"
+    }
+},
+{
+    "model": "webapp.orderproduct",
+    "pk": 1,
+    "fields": {
+        "product": 3,
+        "order": 1,
+        "qty": 3
+    }
+},
+{
+    "model": "webapp.orderproduct",
+    "pk": 2,
+    "fields": {
+        "product": 1,
+        "order": 1,
+        "qty": 2
+    }
+},
+{
+    "model": "webapp.orderproduct",
+    "pk": 3,
+    "fields": {
+        "product": 5,
+        "order": 2,
+        "qty": 2
+    }
+},
+{
+    "model": "webapp.orderproduct",
+    "pk": 4,
+    "fields": {
+        "product": 4,
+        "order": 2,
+        "qty": 1
+    }
+}
+]

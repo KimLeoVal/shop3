@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Удаление{% endblock %}
+
+{% block nav %}
+    <li class="nav-item"><a class="nav-link" href="{% url 'webapp:product_view' product.pk %}">Отмена</a></li>
+{% endblock %}
+
+{% block content %}
+    <h1>Вы уверены, что хотите удалить товар "{{ product.name }}" ({{ product.get_category_display }})?</h1>
+    <form action="{% url "webapp:product_delete" product.pk %}" method="post">
+        {% csrf_token %}
+        <div class="btn-group">
+            <button class="btn btn-danger" type="submit">Да</button>
+            <a class="btn btn-primary" href="{% url 'webapp:product_view' product.pk %}">Отмена</a>
+        </div>
+    </form>
+{% endblock %}

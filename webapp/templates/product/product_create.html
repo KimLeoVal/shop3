@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Создание{% endblock %}
+
+{% block content %}
+    <h1>Создать товар</h1>
+    <form method="post">
+        {% include 'partial/form.html' with button_text="Создать" %}
+    </form>
+
+{% endblock %}

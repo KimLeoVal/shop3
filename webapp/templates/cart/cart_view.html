@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h3>Корзина</h3>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Название</th>
+            <th scope="col">Количество</th>
+            <th scope="col">Цена</th>
+            <th scope="col">Сумма</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for c in cart %}
+            <tr>
+                <td>{{ c.product.name }}</td>
+                <td>{{ c.qty }}</td>
+                <td>{{ c.product.price }}</td>
+                <td>{{ c.product_total }}</td>
+                <td><a href="{% url "webapp:remove_one_for_cart" c.product.pk %}">Удалить один</a></td>
+                <td><a href="{% url "webapp:remove_for_cart" c.product.pk %}">Удалить</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <h5>Общая цена: {{ total }}</h5>
+    <form action="{% url "webapp:order_create" %}" method="post">
+        {% include 'partial/form.html' with button_text="Заказать" %}
+    </form>
+{% endblock %}
