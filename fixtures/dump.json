@@ -120,30 +120,7 @@
         "price": "150.00"
     }
 },
-{
-    "model": "webapp.cart",
-    "pk": 7,
-    "fields": {
-        "product": 1,
-        "qty": 7
-    }
-},
-{
-    "model": "webapp.cart",
-    "pk": 8,
-    "fields": {
-        "product": 2,
-        "qty": 2
-    }
-},
-{
-    "model": "webapp.cart",
-    "pk": 9,
-    "fields": {
-        "product": 6,
-        "qty": 3
-    }
-},
+
 {
     "model": "webapp.order",
     "pk": 1,
