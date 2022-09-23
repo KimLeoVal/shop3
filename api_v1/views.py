@@ -40,6 +40,7 @@ class OrdersView(APIView):
 
 
     def get(self,request,*args,**kwargs):
+        print(self.request.user)
         pk = kwargs.get('pk')
         if pk:
             order=get_object_or_404(Order,pk=pk)
@@ -50,11 +51,13 @@ class OrdersView(APIView):
             serializer=OrderSerializers(order,many=True)
             return Response(serializer.data)
     def post(self,request,*args,**kwargs):
+        print(self.request.user)
         orderproduct=request.data.pop('order_products')
         serializer = OrderSerializers(data=request.data)
         if serializer.is_valid():
             order = serializer.save()
-        print(serializer.instance)
+            if self.request.user.is_authenticated:
+                order.user= self.request.user
         for prod in orderproduct:
             order_prod = OrderProductsSerializers(data={
                 'order': order.pk,
@@ -63,17 +66,14 @@ class OrdersView(APIView):
             })
             order_prod.is_valid(raise_exception=True)
             order_prod.save()
-        # print(request.data)
 
         # print(orderproduct)
         # for i in orderproduct:
-        #     product=i.get("product")
+        #     product=i.get("product_id")
         #     qty=i.get("qty")
-        #     new=OrderProduct.objects.create(product_id=product,qty=qty)
+        #     print(product)
+        #     new=OrderProduct.objects.create(product_id=product,qty=qty,order_id=order.pk)
 
-        # if serializer.is_valid():
-        #     order = serializer.save()
-        #     return Response(serializer.data)
-        # else:
+
         return Response(serializer.data, status=200)
 
