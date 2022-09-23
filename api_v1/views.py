@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
-from rest_framework import viewsets
+from rest_framework import viewsets, status
 from rest_framework.authtoken.models import Token
 from rest_framework.permissions import SAFE_METHODS, IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
@@ -66,6 +66,20 @@ class OrdersView(APIView):
             })
             order_prod.is_valid(raise_exception=True)
             order_prod.save()
+        return Response(serializer.data, status=200)
+    def put(self,request,*args,**kwargs):
+        pk = kwargs.get('pk')
+        order = get_object_or_404(Order, pk=pk)
+        serializer = OrderSerializers(data=request.data, instance=order)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
+    def delete(self,request,*args,**kwargs):
+        pk = kwargs.get('pk')
+        order = get_object_or_404(Order, pk=pk)
+        Order.delete(order)
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 
         # print(orderproduct)
         # for i in orderproduct:
@@ -75,5 +89,13 @@ class OrdersView(APIView):
         #     new=OrderProduct.objects.create(product_id=product,qty=qty,order_id=order.pk)
 
 
-        return Response(serializer.data, status=200)
 
+
+
+class OrderProductsView(viewsets.ModelViewSet):
+    queryset = OrderProduct.objects.all()
+    serializer_class = OrderProductsSerializers
+    def post(self,request,*args,**kwargs):
+        serializer = OrderSerializers(data=request.data)
+        if serializer.is_valid():
+            order = serializer.save()

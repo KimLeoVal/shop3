@@ -4,16 +4,18 @@ from rest_framework import routers
 from rest_framework.authtoken.views import obtain_auth_token
 
 from api_v1 import views
-from api_v1.views import OrdersView
+from api_v1.views import OrdersView, OrderProductsView
 
 app_name = 'api_v1'
 router = routers.DefaultRouter()
 router.register('products', views.ProductViewSet)
+router.register('orderproducts', views.OrderProductsView)
 
 urlpatterns = [
     # для  APIView
     path('orders/', OrdersView.as_view(), name='OrdersView'),
     path('orders/<int:pk>/', OrdersView.as_view(), name='OrdersView'),
+
     # path('products/', ProductsView.as_view()),
     # path('products/<int:pk>/', ProductsView.as_view()),
     # для viewsets.ModelViewSet
