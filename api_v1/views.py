@@ -95,7 +95,15 @@ class OrdersView(APIView):
 class OrderProductsView(viewsets.ModelViewSet):
     queryset = OrderProduct.objects.all()
     serializer_class = OrderProductsSerializers
-    def post(self,request,*args,**kwargs):
-        serializer = OrderSerializers(data=request.data)
-        if serializer.is_valid():
-            order = serializer.save()
+    def put(self,request,*args,**kwargs):
+        pk = kwargs.get('pk')
+        order = get_object_or_404(Order, pk=pk)
+        serializer = OrderSerializers(data=request.data, instance=order)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
+    def delete(self,request,*args,**kwargs):
+        pk = kwargs.get('pk')
+        order = get_object_or_404(Order, pk=pk)
+        Order.delete(order)
+        return Response(status=status.HTTP_204_NO_CONTENT)
